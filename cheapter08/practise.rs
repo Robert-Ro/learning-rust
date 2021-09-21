@@ -6,7 +6,7 @@ fn main() {
     println!("the max time value is: {}", get_total_times(&arr));
 
     arr.sort();
-    get_median(&arr);
+    println!("中位数是: {}", get_median(&arr));
 }
 
 fn get_average(arr: &Vec<i32>) -> f32 {
@@ -17,19 +17,17 @@ fn get_average(arr: &Vec<i32>) -> f32 {
     }
     (sum as f32) / len
 }
-fn get_median(arr: &Vec<i32>) {
+fn get_median(arr: &Vec<i32>) -> f32 {
     let len = arr.len();
-    println!("{:#?}", arr);
-
-    if len % 2 == 0 {
-        println!(
-            "中位数 is: {}",
-            (arr[len / 2 - 1] + arr[len / 2]) as f32 / 2.0
-        );
-    } else {
-        println!("中位数 is: {}", arr[len / 2]);
-    }
+    let median = match len % 2 {
+        1 => arr[len / 2] as f32,
+        _ => (arr[len / 2 - 1] + arr[len / 2]) as f32 / 2.0,
+    };
+    return median;
 }
+/**
+ *  //FIXME 求众数
+ */
 fn get_total_times(arr: &Vec<i32>) -> i32 {
     let mut map: HashMap<i32, i32> = HashMap::new();
     for &i in arr {
