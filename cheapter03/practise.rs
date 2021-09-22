@@ -38,7 +38,7 @@ fn print_songs() {
         "first", "second", "third", "four", "five", "six", "seven", "eigth", "nine", "ten",
         "eleven", "twelve",
     ];
-    let len = arr.len();
+    let len = arr.len() as i32;
     let gifts = [
         "A partridge in a pear tree",
         "Two turtle doves",
@@ -58,15 +58,19 @@ fn print_songs() {
     while index < len {
         println!(
             "On the {} day of Christmas my true love sent to me",
-            arr[index]
+            arr[index as usize]
         );
         let mut j = index;
-        while j > 1 {
-            print!("{}", gifts[j]);
-            if j == 0 {
-                println!(".");
-            } else {
-                println!(",");
+        if j == 0 {
+            println!("{}.", gifts[j as usize]);
+        } else {
+            while j >= 0 {
+                if j == 0 {
+                    println!("And {}", gifts[j as usize].to_lowercase());
+                } else {
+                    println!("{},", gifts[j as usize]);
+                }
+                j -= 1;
             }
         }
 
