@@ -56,8 +56,11 @@ fn main() {
         *elem += 10;
         println!("{}", elem);
     }
-    match v.pop() {
-        Some(number) => println!("{}", number),
-        None => println!("there is no element in number"),
-    }
+    let res = match v.pop() {
+        // Some(number) => println!("{}", number),
+        // None => println!("there is no element in number"),
+        Some(number) => number,
+        None => -1,
+    };
+    println!("the pop ele is :{}", res);
 }
