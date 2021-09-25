@@ -1,4 +1,8 @@
-use std::{env, error::Error, fs};
+use std::{
+    env::{self, Args},
+    error::Error,
+    fs,
+};
 
 pub struct Config {
     pub query: String,
@@ -6,12 +10,19 @@ pub struct Config {
     pub case_sensitive: bool,
 }
 impl Config {
-    pub fn new(args: &[String]) -> Result<Config, &'static str> {
+    pub fn new(mut args: Args) -> Result<Config, &'static str> {
         if args.len() < 3 {
             return Err("not enough arguments");
         }
-        let query = args[1].clone();
-        let filename = args[2].clone();
+        args.next();
+        let query = match args.next() {
+            Some(t) => t,
+            None => return Err("arg [query] is needed!"),
+        };
+        let filename = match args.next() {
+            Some(t) => t,
+            None => return Err("arg [query] is needed!"),
+        };
         // 环境变量，使用方式 CASE_INSENSITIVE=1 cargo run arg1 arg2
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
@@ -44,24 +55,17 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
  * 5. 返回匹配到的结果列表。
  */
 pub fn search<'a>(query: &'a str, contents: &'a str) -> Vec<&'a str> {
-    let mut results = Vec::new();
-    for line in contents.lines() {
-        if line.contains(query) {
-            results.push(line);
-        }
-    }
-    results
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let query = query.to_lowercase();
-    let mut results = Vec::new();
-    for line in contents.lines() {
-        if line.to_lowercase().contains(&query) {
-            results.push(line)
-        }
-    }
-    results
+    contents
+        .lines()
+        .filter(|line| line.to_lowercase().contains(&query.to_lowercase()))
+        .collect()
 }
 
 #[cfg(test)]
