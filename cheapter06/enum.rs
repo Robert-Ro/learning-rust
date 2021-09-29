@@ -22,6 +22,7 @@ enum IpAddr {
 //     V4(Ipv4Addr),
 //     V6(Ipv6Addr),
 // }
+#[derive(Debug)]
 enum Message {
     Quit,                       // 无任何关联数据
     Move { x: i32, y: i32 },    //包含了一个匿名结构体
@@ -29,7 +30,12 @@ enum Message {
     ChangeColor(i32, i32, i32), //包含了3个i32值
 }
 impl Message {
-    fn call(&self) {}
+    fn call(&self) {
+        println!("{:?}", self);
+    }
+    fn call2() {
+        println!("call2");
+    }
 }
 fn main() {
     // let home = IpAddr {
@@ -42,11 +48,13 @@ fn main() {
     // };
     // let home = IpAddr::V4(String::from("127.0.0.1"));
     // let lookback = IpAddr::V6(String::from("::1"));
+
     let home = IpAddr::V4(127, 0, 0, 1);
     let lookback = IpAddr::V6(String::from("::1"));
     let m = Message::Write(String::from("Hello"));
-    m.call();
-    // let x: i8 = 5;
-    // let y: Option<i8> = Some(5);
+    m.call(); // Write("Hello")
+    Message::call2(); // call2
+    let x: i8 = 5;
+    let y: Option<i8> = Some(5);
     // let sum = x + y;
 }
