@@ -1,3 +1,4 @@
+pub mod fundamental;
 use std::collections::HashSet;
 
 pub fn in_array(arr_a: &[&str], arr_b: &[&str]) -> Vec<String> {
@@ -59,7 +60,6 @@ pub fn validate_pin(pin: &str) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn examples() {
         assert_eq!(
