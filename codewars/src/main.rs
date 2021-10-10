@@ -1,7 +1,7 @@
 use codewars::fundamental::fundamental::{
-    anagrams, dashatize, high, list_squared, multiplication_table, multiplication_table2, order,
-    parse, perimeter,
+    dashatize, list_squared, multiplication_table, multiplication_table2,
 };
+use codewars::rank_up::rank_up::{anagrams, high, order, parse, perimeter};
 
 fn main() {
     // test();
