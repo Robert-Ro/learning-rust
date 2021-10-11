@@ -26,8 +26,10 @@ wasm在web上的应用场景：**重计算**、**轻交互**，例如*音视频*
 - [Rust](https://www.rust-lang.org/learn)
 - [rust track](https://exercism.org/tracks/rust)
 - [codewars](https://www.codewars.com/dashboard)
+### wasm
 - [rust wasm](https://www.rust-lang.org/what/wasm)
-
+- [wasm-bindgen](https://rustwasm.github.io/docs/wasm-bindgen/)
+- [wasm-pack](https://rustwasm.github.io/docs/wasm-pack/introduction.html)
 ## todos
 
 - [ ] 光线追踪

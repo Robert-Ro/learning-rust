@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>My Rust + Webpack project!</title>
   </head>
   <body>
+    <div>
+      <input
+        type="file"
+        id="file"
+        style="display: none"
+        onchange="fileImport()"
+        accept="image/*"
+      />
+      <label for="file">选择一张彩色的png图片</label>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
