@@ -1,3 +1,5 @@
+use demo1::digest;
 fn main() {
-    println!("Hello, world!");
+    let res = digest("123");
+    println!("{}", res);
 }
