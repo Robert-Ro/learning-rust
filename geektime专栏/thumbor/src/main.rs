@@ -108,7 +108,7 @@ fn print_test_url(url: &str) {
     let spec2 = Spec::new_watermark(20, 20);
     let spec3 = Spec::new_filter(filter::Filter::Marine);
     let image_spec = ImageSpec::new(vec![spec1, spec2, spec3]);
-    let s: String = image_spec.borrow().into();
+    let _s: String = image_spec.borrow().into();
     let test_image = percent_encode(url.as_bytes(), NON_ALPHANUMERIC).to_string();
     println!(
         "test url: http://localhost:3000/image/{}/{}",

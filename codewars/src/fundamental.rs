@@ -1,4 +1,6 @@
 pub mod fundamental {
+    use std::collections::HashMap;
+
     use regex::*;
 
     pub fn likes(names: &[&str]) -> String {
@@ -126,7 +128,65 @@ pub mod fundamental {
         //     .trim_matches('-')
         //     .to_string()
     }
+    /**
+     * Write a function that will return the count of distinct case-insensitive alphabetic characters and numeric digits that occur more than once in the input string.
+     * @params text The input string can be assumed to contain only alphabets (both uppercase and lowercase) and numeric digits.
+     */
+    pub fn count_duplicates(text: &str) -> u32 {
+        /************solution one**************/
+        let map = text.chars().map(|c| c.to_lowercase().to_string()).fold(
+            HashMap::new(),
+            |mut map, c| {
+                let count = map.entry(c).or_insert(0);
+                *count += 1;
+                return map;
+            },
+        );
+        let mut count = 0;
+        for (_v, i) in map.iter() {
+            if *i > 1 {
+                count += 1;
+            }
+        }
+        println!("{}", count);
+        /***********solution two************/
+        let mut map: HashMap<char, u32> = HashMap::new();
+        for c in text.to_lowercase().chars() {
+            let count = map.entry(c).or_default();
+            *count += 1;
+        }
+        map.values().filter(|&&v| v > 1).count() as u32
+    }
+    /**
+     * NOTE 数据量大时，O(n)会超出时间，这时就需要用怎么降低时间复杂度到O(logn)或O(1)
+     */
+    pub fn _bouncing_ball(h: f64, bounce: f64, window: f64) -> i32 {
+        if h <= window {
+            return -1;
+        }
+        let mut init = h;
+        let mut count: f64 = 0f64;
+
+        loop {
+            count += 1f64; // top -> down
+            init *= bounce;
+            if init < window {
+                break;
+            };
+            count += 1f64; // down -> top
+        }
+        count as i32
+    }
+    // NOTE 采用数学思维
+    pub fn bouncing_ball(h: f64, bounce: f64, window: f64) -> i32 {
+        if !(h > 0. && 0. < bounce && bounce < 1. && window < h) {
+            -1
+        } else {
+            (window / h).log(bounce).ceil() as i32 * 2 - 1
+        }
+    }
 }
+
 #[cfg(test)]
 use super::fundamental::fundamental::*;
 #[test]
@@ -149,15 +209,15 @@ fn test_multiplication_table() {
 }
 
 use crate::fundamental::fundamental::list_squared2;
-fn testing(m: u64, n: u64, exp: Vec<(u64, u64)>) -> () {
+fn _testing(m: u64, n: u64, exp: Vec<(u64, u64)>) -> () {
     assert_eq!(list_squared2(m, n), exp)
 }
 #[test]
 fn basics_list_squared() {
-    testing(1, 250, vec![(1, 1), (42, 2500), (246, 84100)]);
-    testing(1, 250, vec![(1, 1), (42, 2500), (246, 84100)]);
-    testing(42, 250, vec![(42, 2500), (246, 84100)]);
-    testing(300, 600, vec![]);
+    _testing(1, 250, vec![(1, 1), (42, 2500), (246, 84100)]);
+    _testing(1, 250, vec![(1, 1), (42, 2500), (246, 84100)]);
+    _testing(42, 250, vec![(42, 2500), (246, 84100)]);
+    _testing(300, 600, vec![]);
 }
 
 #[test]
@@ -179,4 +239,30 @@ fn test_weird_dashatize() {
     assert_eq!(dashatize(0), "0");
     assert_eq!(dashatize(-1), "1");
     assert_eq!(dashatize(-28369), "28-3-6-9");
+}
+#[test]
+fn test_abcde() {
+    assert_eq!(count_duplicates("abcde"), 0);
+}
+
+#[test]
+fn test_abcdea() {
+    assert_eq!(count_duplicates("abcdea"), 1);
+}
+
+#[test]
+fn test_indivisibility() {
+    assert_eq!(count_duplicates("indivisibility"), 1);
+}
+use crate::fundamental::fundamental::bouncing_ball;
+fn _testequal(h: f64, bounce: f64, window: f64, exp: i32) -> () {
+    assert_eq!(bouncing_ball(h, bounce, window), exp);
+}
+
+#[test]
+fn tests_bouncing_ball() {
+    _testequal(3.0, 0.66, 1.5, 3);
+    _testequal(30.0, 0.66, 1.5, 15);
+    _testequal(40.0, 0.4, 10.0, 3);
+    _testequal(10.0, 0.6, 10.0, -1);
 }
