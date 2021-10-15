@@ -1,7 +1,6 @@
 pub mod fundamental {
-    use std::collections::HashMap;
-
     use regex::*;
+    use std::collections::HashMap;
 
     pub fn likes(names: &[&str]) -> String {
         match names {
@@ -40,11 +39,11 @@ pub mod fundamental {
             })
             .collect()
     }
-    fn is_sqrt_ok(data: u64) -> bool {
+    pub fn is_sqrt_ok(data: u64) -> bool {
         ((data as f64).sqrt() as u64).pow(2) == data
     }
-    //FIXME
     pub fn list_squared2(m: u64, n: u64) -> Vec<(u64, u64)> {
+        //FIXME 看不懂
         (m..=n)
             .map(|i| {
                 (
@@ -78,7 +77,7 @@ pub mod fundamental {
         }
         res
     }
-    fn is_odd(i: i32) -> bool {
+    pub fn is_odd(i: i32) -> bool {
         i % 2 != 0
     }
     pub fn sort_array2(arr: &[i32]) -> Vec<i32> {
@@ -177,18 +176,28 @@ pub mod fundamental {
         }
         count as i32
     }
-    // NOTE 采用数学思维
     pub fn bouncing_ball(h: f64, bounce: f64, window: f64) -> i32 {
+        // NOTE 采用数学思维
         if !(h > 0. && 0. < bounce && bounce < 1. && window < h) {
             -1
         } else {
             (window / h).log(bounce).ceil() as i32 * 2 - 1
         }
     }
+    // pub fn gap(g: i32, m: u64, n: u64) -> Option<(u64, u64)> {
+    //     // your code
+    //     Some((1, 1))
+    // }
 }
-
 #[cfg(test)]
-use super::fundamental::fundamental::*;
+use crate::fundamental::fundamental::*;
+use crate::fundamental::fundamental::{bouncing_ball, list_squared2};
+fn _testing(m: u64, n: u64, exp: Vec<(u64, u64)>) -> () {
+    assert_eq!(list_squared2(m, n), exp)
+}
+fn _testequal(h: f64, bounce: f64, window: f64, exp: i32) -> () {
+    assert_eq!(bouncing_ball(h, bounce, window), exp);
+}
 #[test]
 fn test_likes() {
     assert_eq!(likes(&[]), "no one likes this");
@@ -208,10 +217,6 @@ fn test_multiplication_table() {
     assert_eq!(multiplication_table(3), [[1, 2, 3], [2, 4, 6], [3, 6, 9]]);
 }
 
-use crate::fundamental::fundamental::list_squared2;
-fn _testing(m: u64, n: u64, exp: Vec<(u64, u64)>) -> () {
-    assert_eq!(list_squared2(m, n), exp)
-}
 #[test]
 fn basics_list_squared() {
     _testing(1, 250, vec![(1, 1), (42, 2500), (246, 84100)]);
@@ -254,10 +259,6 @@ fn test_abcdea() {
 fn test_indivisibility() {
     assert_eq!(count_duplicates("indivisibility"), 1);
 }
-use crate::fundamental::fundamental::bouncing_ball;
-fn _testequal(h: f64, bounce: f64, window: f64, exp: i32) -> () {
-    assert_eq!(bouncing_ball(h, bounce, window), exp);
-}
 
 #[test]
 fn tests_bouncing_ball() {
@@ -266,3 +267,15 @@ fn tests_bouncing_ball() {
     _testequal(40.0, 0.4, 10.0, 3);
     _testequal(10.0, 0.6, 10.0, -1);
 }
+
+// fn gap_testing(g: i32, m: u64, n: u64, exp: Option<(u64, u64)>) -> () {
+//     assert_eq!(gap(g, m, n), exp)
+// }
+
+// #[test]
+// fn basics_gap() {
+//     gap_testing(2, 100, 110, Some((101, 103)));
+//     gap_testing(4, 100, 110, Some((103, 107)));
+//     gap_testing(6, 100, 110, None);
+//     gap_testing(8, 300, 400, Some((359, 367)));
+// }
