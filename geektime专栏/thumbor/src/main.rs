@@ -100,7 +100,7 @@ async fn retrieve_image(url: &str, cache: Cache) -> Result<Bytes> {
     Ok(data)
 }
 /**
- * 辅助函数
+ * 辅助函数，测试spec生成
  */
 fn print_test_url(url: &str) {
     use std::borrow::Borrow;
