@@ -1,8 +1,0 @@
-[package]
-name="guessing_name"
-version="0.1.0"
-edition="2018"
-authpr="liutsing <liutsingluo@gmail.com>"
-
-[dependencies]
-rand = "0.8.3"
