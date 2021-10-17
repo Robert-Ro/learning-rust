@@ -21,3 +21,17 @@ Everything else is unsupported, including:
 - Character encoding detection
 
 Rust strings are stored as UTF-8 byte arrays. To go to the next character, we can't just advance by one byte. Instead we use char_indices which correctly handles multi-byte characters.
+
+## solutions
+
+1. definition Node struct compatiable with sub Nodes
+2. use `Vec<char>` iterator
+  - check endof file
+  - ignore whitespaces
+  - check tag open and close
+  - check attribute name start and end
+  - check attribute value start and end
+
+## APIs
+
+- char_indices: Returns an iterator over the [`char`]s of a string slice, and their positions

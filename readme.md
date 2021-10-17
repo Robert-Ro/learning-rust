@@ -35,3 +35,4 @@ wasm在web上的应用场景：**重计算**、**轻交互**，例如*音视频*
 - [ ] 光线追踪
 - [ ] md 解析
 - [ ] xml 提取
+- [ ] rust termianl music player
