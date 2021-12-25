@@ -4,7 +4,7 @@ use image::ImageOutputFormat;
 mod photon;
 pub use photon::Photon;
 
-// Engine trait：未来可以添加更多的 engine，主流程只需要替换 engine NOTE: 接口思想
+// Engine trait：未来可以添加更多的 engine，主流程只需要替换 engine NOTE: 开闭原则
 pub trait Engine {
     // 对 engine 按照 specs 进行一系列有序的处理
     fn apply(&mut self, specs: &[Spec]);

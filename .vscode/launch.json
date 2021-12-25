@@ -12,12 +12,19 @@
     //   "args": [],
     //   "cwd": "${workspaceFolder}"
     // },
+    // {
+    //   "type": "lldb",
+    //   "request": "launch",
+    //   "name": "Debug",
+    //   "program": "${workspaceFolder}/geektime专栏/maple-http-pi/target/debug/maple-httpie",
+    //   "args": ["get","http://www.baidu.com"],
+    //   "cwd": "${workspaceFolder}"
+    // },
     {
       "type": "lldb",
       "request": "launch",
       "name": "Debug",
-      "program": "${workspaceFolder}/geektime专栏/maple-http-pi/target/debug/maple-httpie",
-      "args": ["get","http://www.baidu.com"],
+      "program": "${workspaceFolder}/geektime专栏/thumbor/target/debug/thumbor",
       "cwd": "${workspaceFolder}"
     }
   ]
