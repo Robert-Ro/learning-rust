@@ -36,3 +36,11 @@ wasm在web上的应用场景：**重计算**、**轻交互**，例如*音视频*
 - [ ] md 解析
 - [ ] xml 提取
 - [ ] rust termianl music player
+
+## [Scenarios](https://course.rs/)
+- UI层开发：`wasm`、`swc`、`deno`、`nextjs`
+- 基础设施层、数据库、搜索引擎、网路设施、云原生
+- 系统开发：linux(目前主要支持驱动开发)
+- 系统工具：**重写**C、C++写的一票工具
+- 操作系统：fushia
+- 区块链
