@@ -34,7 +34,7 @@ where
 {
     pub fn run(&self) {
         for component in self.components.iter() {
-            component.draw(); //FIXME 
+            component.draw(); //FIXME
         }
     }
 }
