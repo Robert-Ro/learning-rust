@@ -1,3 +1,5 @@
+use std::convert::TryInto;
+use std::fmt::Display;
 pub trait Summary {
     fn summary_author(&self) -> String;
     fn summarize(&self) -> String {
@@ -47,8 +49,31 @@ fn main() {
     println!("{}", w.summarize());
 
     notify(&w);
+    notify2(&w);
+
+    let a: i32 = 10;
+    let b: u16 = 100;
+
+    let b_ = b.try_into().unwrap(); // TryInto下的方法
+    if a < b_ {
+        println!("a is less than b");
+    }
 }
 
 pub fn notify(item: &impl Summary) {
     println!("Breaking news! {}", item.summarize());
+}
+
+pub fn notify2<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+pub fn notify3<T: Summary + Display>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+pub fn returns_summartizable() -> impl Summary {
+    Weibo {
+        username: String::from("sunface"),
+        content: String::from("m1 max太厉害了，电脑再也不卡了"),
+    }
 }

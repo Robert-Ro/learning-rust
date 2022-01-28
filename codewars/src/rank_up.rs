@@ -354,6 +354,7 @@ fn tests_spin_words() {
         "ylsuoireS this is the last one"
     );
 }
+#[allow(dead_code)]
 fn dotest(n: u64, exp: u64) -> () {
     // assert_eq!(perimeter(n), exp);
     assert_eq!(perimeter2(n), exp);
@@ -399,7 +400,7 @@ fn tests_anagrams() {
         &["carer", "racer"],
     );
 }
-
+#[allow(dead_code)]
 fn do_test(word: &str, words: &[&str], exp: &[&str]) {
     let words: Vec<String> = words.iter().map(|w| w.to_string()).collect();
     let expected: Vec<String> = exp.iter().map(|w| w.to_string()).collect();

@@ -33,6 +33,21 @@ fn largest<T: Copy + PartialOrd>(list: &[T]) -> T {
     largest
 }
 
+/// largest函数
+///
+/// 不需要强求每个参数都实现Copy trait.使用引用的方式
+///
+/// * `list` - 集合T.
+fn largest2<T: PartialOrd>(list: &[T]) -> &T {
+    let mut largest3 = &list[0];
+    for item in list.iter() {
+        if item > largest3 {
+            largest3 = item;
+        }
+    }
+    &largest3
+}
+
 fn main() {
     let m = Message::Quit;
     m.call();
@@ -42,6 +57,9 @@ fn main() {
     let number_list: Vec<i32> = vec![34, 50, 25, 100, 65];
     let result = largest(&number_list);
     println!("the largest in number_list is {}", result);
+
+    let result = largest2(&number_list);
+    println!("the largest2 in number_list is {}", result);
 
     let char_list: Vec<char> = vec!['y', 'm', 'a', 'q'];
     let result = largest(&char_list);
