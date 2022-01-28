@@ -24,8 +24,10 @@
       "type": "lldb",
       "request": "launch",
       "name": "Debug",
-      "program": "${workspaceFolder}/geektime专栏/thumbor/target/debug/thumbor",
-      "cwd": "${workspaceFolder}"
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "args": [],
+      "targetArchitecture": "x86_64",
     }
   ]
 }
