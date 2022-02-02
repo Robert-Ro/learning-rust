@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
 use regex::*;
 use std::collections::{BTreeSet, HashMap};
 use std::iter::FromIterator;
@@ -263,7 +265,7 @@ pub fn digitize(n: u64) -> Vec<u8> {
         .rev()
         .collect::<Vec<u8>>()
 }
-#[allow(dead_code)]
+
 fn number(bus_stops: &[(i32, i32)]) -> i32 {
     bus_stops
         .iter()
@@ -273,7 +275,7 @@ fn reverse(str: &str) -> String {
     str.chars().rev().collect()
     // String::from_iter(str.chars().rev())
 }
-#[allow(dead_code)]
+
 fn reverse_words(str: &str) -> String {
     str.to_string()
         .split(" ")
@@ -281,7 +283,7 @@ fn reverse_words(str: &str) -> String {
         .collect::<Vec<String>>()
         .join(" ")
 }
-#[allow(dead_code)]
+
 fn disemvowel(s: &str) -> String {
     // String::from_iter(
     //     s.chars()
@@ -291,11 +293,11 @@ fn disemvowel(s: &str) -> String {
         .filter(|c| !"aeiou".contains(c.to_ascii_lowercase()))
         .collect()
 }
-#[allow(dead_code)]
+
 fn string_to_number(s: &str) -> i32 {
     s.parse().unwrap()
 }
-#[allow(dead_code)]
+
 fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
     data.into_iter()
         .map(|c| {
@@ -308,7 +310,7 @@ fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
         })
         .collect()
 }
-#[allow(dead_code)]
+
 pub fn dig_pow(n: i64, p: i32) -> i64 {
     // let str = n.to_string().chars().fold((p as u32, 0), |acc, curr| {
     //     let value: i64 = i64::pow(curr.to_digit(10).unwrap() as i64, acc.0) + acc.1;
@@ -329,7 +331,7 @@ pub fn dig_pow(n: i64, p: i32) -> i64 {
         _ => -1,
     }
 }
-#[allow(dead_code)]
+
 fn dna_to_rna(dna: &str) -> String {
     // dna.chars()
     //     .map(|c| if c == 'T' { 'U' } else { c })
@@ -337,7 +339,7 @@ fn dna_to_rna(dna: &str) -> String {
 
     dna.replace("T", "U")
 }
-#[allow(dead_code)]
+
 fn xo(string: &'static str) -> bool {
     let map: HashMap<String, u32> = string.chars().fold(HashMap::new(), |mut map, c: char| {
         let count = map.entry(c.to_ascii_lowercase().to_string()).or_insert(0);
@@ -351,11 +353,11 @@ fn xo(string: &'static str) -> bool {
     //     _ => a,
     // }) == 0
 }
-#[allow(dead_code)]
+
 fn no_space(x: String) -> String {
     x.replace(" ", "")
 }
-#[allow(dead_code)]
+
 fn alphabet_position(text: &str) -> String {
     // solution1
     //     text.split_whitespace()
@@ -384,7 +386,7 @@ fn alphabet_position(text: &str) -> String {
         .collect::<Vec<String>>()
         .join(" ")
 }
-#[allow(dead_code)]
+
 fn count_positives_sum_negatives(input: Vec<i32>) -> Vec<i32> {
     if input.len() == 0 {
         return vec![];
@@ -398,7 +400,7 @@ fn count_positives_sum_negatives(input: Vec<i32>) -> Vec<i32> {
         acc
     })
 }
-#[allow(dead_code)]
+
 fn binary_slice_to_number(slice: &[u32]) -> u32 {
     // solution1
     // slice.into_iter().rev().fold([0, 0], |acc, d| {
@@ -407,7 +409,7 @@ fn binary_slice_to_number(slice: &[u32]) -> u32 {
     // solution2
     slice.iter().fold(0, |acc, bit| (acc << 1) | bit) // most clever answer
 }
-#[allow(dead_code)]
+
 fn longest(a1: &str, a2: &str) -> String {
     // solution1
     // let mut s: Vec<char> = [a1, a2]
@@ -430,7 +432,7 @@ fn longest(a1: &str, a2: &str) -> String {
         .iter()
         .collect()
 }
-#[allow(dead_code)]
+
 pub fn accum(s: &str) -> String {
     // solution1
     // s.chars()
@@ -461,7 +463,7 @@ pub fn accum(s: &str) -> String {
         .collect::<Vec<String>>()
         .join("-")
 }
-#[allow(dead_code)]
+
 fn abbrev_name(name: &str) -> String {
     name.split_whitespace()
         .into_iter()
@@ -476,21 +478,21 @@ fn abbrev_name(name: &str) -> String {
         .collect::<Vec<String>>()
         .join(".")
 }
-#[allow(dead_code)]
+
 fn century(year: u32) -> u32 {
     match year % 100 {
         0 => year / 100,
         _ => year / 100 + 1,
     }
 }
-#[allow(dead_code)]
+
 fn bool_to_word(value: bool) -> &'static str {
     match value {
         true => "Yes",
         false => "No",
     }
 }
-#[allow(dead_code)]
+
 fn descending_order(x: u64) -> u64 {
     // solution1
     // let mut nums = x
@@ -510,7 +512,7 @@ fn descending_order(x: u64) -> u64 {
     nums.sort_by(|a, b| b.cmp(a)); // 字符串可以直接匹配
     String::from_iter(nums).parse::<u64>().unwrap()
 }
-#[allow(dead_code)]
+
 ///  the time since midnight in milliseconds.
 ///
 /// * `h` - hour
@@ -520,7 +522,7 @@ fn descending_order(x: u64) -> u64 {
 fn past(h: i32, m: i32, s: i32) -> i32 {
     h * 3600 * 1000 + m * 60 * 1000 + s * 1000
 }
-#[allow(dead_code)]
+
 fn greet(language: &str) -> &str {
     let mut map: HashMap<&str, &str> = HashMap::with_capacity(17);
     let data = vec![
@@ -551,7 +553,7 @@ fn greet(language: &str) -> &str {
         _ => "Welcome",
     }
 }
-#[allow(dead_code)]
+
 fn count_sheep(sheep: &[bool]) -> u8 {
     // sheep.iter().fold(0, |mut acc, curr| {
     //     match curr {
@@ -561,6 +563,160 @@ fn count_sheep(sheep: &[bool]) -> u8 {
     //     acc
     // })
     sheep.iter().filter(|&&c| c).count() as u8
+}
+
+fn find_short(s: &str) -> u32 {
+    // solution1
+    // s.split_whitespace().fold((0, 0), |mut acc, curr|{
+    //     if acc.0 == 0 {
+    //         acc.1 = curr.len()
+    //     }else {
+    //        if acc . 1 > curr.len() {  acc.1 =  curr.len() };
+    //     }
+    //     (1, acc.1)
+    // }).1.try_into().unwrap()
+    // solution2
+    s.split_whitespace().map(str::len).min().unwrap() as u32
+}
+
+fn count_sheep2(n: u32) -> String {
+    // solution1
+    // let mut res = String::new();
+    // for i in 1..=n {
+    //     res.push_str(format!("{} sheep...", i).as_str());
+    // }
+    // res
+    // solution2
+    (1..=n).map(|x| format!("{} sheep...", x)).collect()
+}
+fn solution(word: &str, ending: &str) -> bool {
+    word.contains(ending)
+}
+fn greet2() -> String {
+    // format!("hello world!")
+    String::from("hello world!")
+}
+fn to_alternating_case(s: &str) -> String {
+    // solution1
+    //   s.chars().map(|a|{
+    //     match a.is_ascii_lowercase() {
+    //         true => a.to_ascii_uppercase().to_string(),
+    //         false => a.to_ascii_lowercase().to_string()
+    //       }
+    //   }).collect::<Vec<String>>().join("")
+    // solution2
+    let mut result = String::with_capacity(s.len());
+    for c in s.chars() {
+        if c.is_uppercase() {
+            result.extend(c.to_lowercase());
+        } else {
+            result.extend(c.to_uppercase());
+        }
+    }
+    result
+}
+fn litres(time: f64) -> i32 {
+    (time as i32) / 2
+}
+fn enough(cap: i32, on: i32, wait: i32) -> i32 {
+    // solution1
+    //    let rest =  cap - on - wait;
+    //    match rest >= 0 {
+    //      true =>  0,
+    //    false =>    0- rest
+    //    }
+    // solution2
+    (on + wait - cap).max(0)
+}
+fn wave(s: &str) -> Vec<String> {
+    // (0..s.len())
+    //     .map(|c| {
+    //         s.chars()
+    //             .enumerate()
+    //             .map(move |(i, char)| match i == c {
+    //                 true => char.to_ascii_uppercase(),
+    //                 false => char,
+    //             })
+    //             .collect::<String>()
+    //     })
+    //     .collect::<Vec<String>>()
+    s.char_indices()
+        .map(|(i, c)| s[..i].to_string() + &c.to_uppercase().to_string() + &s[i + 1..])
+        .filter(|w| w != s)
+        .collect()
+}
+fn odd_or_even(numbers: Vec<i32>) -> String {
+    match numbers.iter().sum::<i32>() % 2 == 0 {
+        true => "even".to_string(),
+        false => "odd".to_string(),
+    }
+}
+fn gimme(input_array: [i32; 3]) -> usize {
+    let min = input_array.iter().min().unwrap();
+    let max = input_array.iter().max().unwrap();
+    input_array.iter().position(|n| min < n && n < max).unwrap() // 在迭代器中搜索元素，并返回其索引。
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum Direction {
+    North,
+    East,
+    West,
+    South,
+}
+
+// fn dir_reduc(arr: &[Direction]) -> Vec<Direction> {
+//     todo!();
+// }
+fn nb_dig(n: i32, d: i32) -> i32 {
+    // your code
+    0
+}
+fn update_light(current: &str) -> String {
+    match current {
+        "green" => "yellow",
+        "yellow" => "red",
+        "red" => "green",
+        _ => panic!(),
+    }
+    .into()
+}
+fn are_you_playing_banjo(name: &str) -> String {
+    match name.starts_with("R") || name.starts_with("r") {
+        // 按索引取0/全转变为lowercase再比对
+        true => format!("{} plays banjo", name),
+        false => format!("{} does not play banjo", name),
+    }
+}
+fn get_char(c: i32) -> char {
+    // unsafe { std::char::from_u32_unchecked(c as u32) }
+    c as u8 as char
+}
+fn first_non_consecutive(arr: &Vec<i32>) -> Option<i32> {
+    // code here
+    // if arr.len() == 2 {
+    //     return None;
+    // }
+    // arr.iter().fold((0, 0), |acc, cur| {
+    //     if acc.0 == 0 {
+    //         acc.1 = cur;
+    //     } else {
+    //         if acc.1 - cur != 1 {
+    //             return Some(cur);
+    //         } else {
+    //             acc.1 = cur;
+    //         }
+    //     }
+    //     (acc.0 + 1, acc.1)
+    // });
+    // None
+    arr.windows(2).find(|s| s[0] + 1 != s[1]).map(|s| s[1]) //NOTE  window find
+}
+fn is_divide_by(number: i32, a: i32, b: i32) -> bool {
+    number.abs() % a.abs() == 0 && number.abs() % b.abs() == 0
+}
+fn find_smallest_int(arr: &[i32]) -> i32 {
+    // your code here
+    *arr.iter().min().unwrap()
 }
 //*****************************************************************/
 #[cfg(test)]
@@ -730,7 +886,7 @@ fn test_open_or_senior() {
         vec!["Open", "Open", "Open", "Open"]
     );
 }
-#[allow(dead_code)]
+
 fn _test_dig_pow(n: i64, p: i32, exp: i64) -> () {
     println!(" n: {:?};", n);
     println!("p: {:?};", p);
@@ -803,7 +959,7 @@ fn test_binary_slice_to_number() {
     assert_eq!(binary_slice_to_number(&vec![1, 1, 1, 1]), 15);
     assert_eq!(binary_slice_to_number(&vec![0, 1, 1, 0]), 6);
 }
-#[allow(dead_code)]
+
 fn testing(s1: &str, s2: &str, exp: &str) -> () {
     println!("s1:{:?} s2:{:?}", s1, s2);
     println!("{:?} {:?}", longest(s1, s2), exp);
@@ -819,9 +975,7 @@ fn basic_tests() {
         "lessdangerousthancoding",
         "abcdefghilnoprstu",
     );
-}
-#[test]
-fn test_accum() {
+
     assert_eq!(
         accum("ZpglnRxqenU"),
         "Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu"
@@ -842,25 +996,19 @@ fn test_accum() {
         accum("HbideVbxncC"),
         "H-Bb-Iii-Dddd-Eeeee-Vvvvvv-Bbbbbbb-Xxxxxxxx-Nnnnnnnnn-Cccccccccc-Ccccccccccc"
     );
-}
-#[test]
-fn test_abbrev_name() {
+
     assert_eq!(abbrev_name("Sam Harris"), "S.H");
     assert_eq!(abbrev_name("Patrick Feenan"), "P.F");
     assert_eq!(abbrev_name("Evan Cole"), "E.C");
     assert_eq!(abbrev_name("P Favuzzi"), "P.F");
     assert_eq!(abbrev_name("David Mendieta"), "D.M");
-}
-#[test]
-fn test_century() {
+
     assert_eq!(century(1705), 18);
     assert_eq!(century(1900), 19);
     assert_eq!(century(1601), 17);
     assert_eq!(century(2000), 20);
     assert_eq!(century(89), 1);
-}
-#[test]
-fn test_descending_order() {
+
     assert_eq!(descending_order(0), 0);
     assert_eq!(descending_order(1), 1);
     assert_eq!(descending_order(15), 51);
@@ -868,26 +1016,152 @@ fn test_descending_order() {
     assert_eq!(descending_order(123456789), 987654321);
     assert_eq!(descending_order(145263), 654321);
     assert_eq!(descending_order(1254859723), 9875543221);
-}
-#[test]
-fn test_past() {
+
     assert_eq!(past(0, 1, 1), 61000);
     assert_eq!(past(1, 1, 1), 3661000);
     assert_eq!(past(0, 0, 0), 0);
     assert_eq!(past(1, 0, 1), 3601000);
     assert_eq!(past(1, 0, 0), 3600000);
-}
-#[test]
-fn test_greet() {
+
     assert_eq!(greet("english"), "Welcome");
     assert_eq!(greet("dutch"), "Welkom");
     assert_eq!(greet("IP_ADDRESS_INVALID"), "Welcome");
     assert_eq!(greet(""), "Welcome");
     assert_eq!(greet("swelsh"), "Welcome");
-}
-#[test]
-fn test_count_sheep() {
+
     assert_eq!(count_sheep(&[false]), 0);
     assert_eq!(count_sheep(&[true]), 1);
     assert_eq!(count_sheep(&[true, false]), 1);
+
+    assert_eq!(
+        find_short("bitcoin take over the world maybe who knows perhaps"),
+        3
+    );
+    assert_eq!(
+        find_short("turns out random test cases are easier than writing out basic ones"),
+        3
+    );
+    assert_eq!(
+        find_short("lets talk about javascript the best language"),
+        3
+    );
+    assert_eq!(
+        find_short("i want to travel the world writing code one day"),
+        1
+    );
+    assert_eq!(find_short("Lets all go on holiday somewhere very cold"), 2);
+    assert_eq!(find_short("Let's travel abroad shall we"), 2);
+
+    assert_eq!(count_sheep2(0), "");
+    assert_eq!(count_sheep2(1), "1 sheep...");
+    assert_eq!(count_sheep2(2), "1 sheep...2 sheep...");
+    assert_eq!(count_sheep2(3), "1 sheep...2 sheep...3 sheep...");
+
+    assert_eq!(true, solution("abc", "c"));
+    assert_eq!(false, solution("strawberry", "banana"));
+
+    assert_eq!("HELLO WORLD", to_alternating_case("hello world"));
+    assert_eq!("hello world", to_alternating_case("HELLO WORLD"));
+    assert_eq!("HELLO world", to_alternating_case("hello WORLD"));
+    assert_eq!("hEllO wOrld", to_alternating_case("HeLLo WoRLD"));
+    assert_eq!(
+        "Hello World",
+        to_alternating_case(&to_alternating_case("Hello World")[..])
+    );
+    assert_eq!("12345", to_alternating_case("12345"));
+    assert_eq!("1A2B3C4D5E", to_alternating_case("1a2b3c4d5e"));
+    assert_eq!(
+        "sTRING.tOaLTERNATINGcASE",
+        to_alternating_case("String.ToAlternatingCase")
+    );
+
+    assert_eq!(litres(2.), 1);
+    assert_eq!(litres(1.4), 0);
+    assert_eq!(litres(12.3), 6);
+    assert_eq!(litres(0.82), 0);
+    assert_eq!(litres(11.8), 5);
+    assert_eq!(litres(1787.), 893);
+    assert_eq!(litres(0.), 0);
+
+    assert_eq!(enough(10, 5, 5), 0, "enough(10, 5, 5) should return 0");
+    assert_eq!(
+        enough(100, 60, 50),
+        10,
+        "enough(100, 60, 50) should return 10"
+    );
+    assert_eq!(enough(20, 5, 5), 0, "enough(20, 5, 5) should return 0");
+
+    let expect = ["Hello", "hEllo", "heLlo", "helLo", "hellO"];
+    assert_eq!(wave("hello"), expect);
+
+    let expect = [
+        "Codewars", "cOdewars", "coDewars", "codEwars", "codeWars", "codewArs", "codewaRs",
+        "codewarS",
+    ];
+    assert_eq!(wave("codewars"), expect);
+
+    let expect: [&str; 0] = [];
+    assert_eq!(wave(""), expect);
+
+    let expect = [
+        "Two words",
+        "tWo words",
+        "twO words",
+        "two Words",
+        "two wOrds",
+        "two woRds",
+        "two worDs",
+        "two wordS",
+    ];
+    assert_eq!(wave("two words"), expect);
+
+    let expect = [" Gap ", " gAp ", " gaP "];
+    assert_eq!(wave(" gap "), expect);
+
+    assert_eq!(gimme([2, 3, 1]), 0);
+    assert_eq!(gimme([-2, -3, -1]), 0);
+    assert_eq!(gimme([5, 10, 14]), 1);
+    // TODO
+    // [-5, -10, -14] 1
+    // [-1614572743, -1857284097, -1913689197] 1
+    // use Direction::{self, *};
+    // let a = [North, South, South, East, West, North, West];
+    // assert_eq!(dir_reduc(&a), [West]);
+
+    // let a = [North, West, South, East];
+    // assert_eq!(dir_reduc(&a), [North, West, South, East]);
+
+    assert_eq!(get_char(55), '7');
+    assert_eq!(get_char(56), '8');
+    assert_eq!(get_char(57), '9');
+    assert_eq!(get_char(58), ':');
+    assert_eq!(get_char(59), ';');
+    assert_eq!(get_char(60), '<');
+    assert_eq!(get_char(61), '=');
+    assert_eq!(get_char(62), '>');
+    assert_eq!(get_char(63), '?');
+    assert_eq!(get_char(64), '@');
+    assert_eq!(get_char(65), 'A');
+
+    assert_eq!(first_non_consecutive(&vec![1, 2, 3, 4, 6, 7, 8]), Some(6));
+    assert_eq!(first_non_consecutive(&vec![1, 2, 3, 4, 5, 6, 7, 8]), None);
+    assert_eq!(first_non_consecutive(&vec![4, 6, 7, 8, 9, 11]), Some(6));
+    assert_eq!(first_non_consecutive(&vec![4, 5, 6, 7, 8, 9, 11]), Some(11));
+    assert_eq!(first_non_consecutive(&vec![31, 32]), None);
+    assert_eq!(first_non_consecutive(&vec![-3, -2, 0, 1]), Some(0));
+    assert_eq!(first_non_consecutive(&vec![-5, -4, -3, -1]), Some(-1));
+
+    assert_eq!(is_divide_by(8, 2, 4), true);
+    assert_eq!(is_divide_by(12, -3, 4), true);
+    assert_eq!(is_divide_by(8, 3, 4), false);
+    assert_eq!(is_divide_by(48, 2, -5), false);
+    assert_eq!(is_divide_by(-100, -25, 10), true);
+    assert_eq!(is_divide_by(10000, 5, -3), false);
+    assert_eq!(is_divide_by(4, 4, 2), true);
+    assert_eq!(is_divide_by(5, 2, 3), false);
+    assert_eq!(is_divide_by(-96, 25, 17), false);
+    assert_eq!(is_divide_by(33, 1, 33), true);
+
+    assert_eq!(find_smallest_int(&[34, 15, 88, 2]), 2);
+    assert_eq!(find_smallest_int(&[34, -345, -1, 100]), -345);
 }
