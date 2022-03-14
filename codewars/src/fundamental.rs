@@ -718,6 +718,81 @@ fn find_smallest_int(arr: &[i32]) -> i32 {
     // your code here
     *arr.iter().min().unwrap()
 }
+fn dna_strand(dna: &str) -> String {
+    // Translate the DNA strand
+    dna.chars()
+        .map(|c| {
+            match c {
+                'A' => 'T',
+                'T' => 'A',
+                'C' => 'G',
+                'G' => 'C',
+                s => s,
+            }
+            // .to_string()
+        })
+        .collect::<String>()
+    // .filter(|c| !c.is_empty())
+    // .collect::<Vec<_>>()
+    // .join("")
+}
+pub fn tribonacci(signature: &[f64; 3], n: usize) -> Vec<f64> {
+    // attempt
+    // if n <= 3 {
+    //     return signature[0..n].to_vec();
+    // }
+    // let mut pre_n = tribonacci(signature, n - 1);
+    // let result: f64 = tribonacci(signature, n - 1).last().unwrap()
+    //     + tribonacci(signature, n - 2).last().unwrap()
+    //     + tribonacci(signature, n - 3).last().unwrap();
+
+    // pre_n.push(result);
+    // pre_n
+    // Solution1
+    // let mut cache = signature.to_vec();
+    // cache.resize(n, 0.0);
+    // for i in 3..n {
+    //     cache[i] = cache[i - 1] + cache[i - 2] + cache[i - 3];
+    // }
+    // cache
+    //Solution2
+    let mut tribonacci = signature.to_vec();
+    for i in 0..n {
+        tribonacci.push(tribonacci[i] + tribonacci[i + 1] + tribonacci[i + 2]);
+    }
+    tribonacci[0..n].to_vec()
+}
+fn printer_error(s: &str) -> String {
+    let n = 0;
+    format!("{}/{}", n, s.len())
+}
+fn hello(name: &str) -> String {
+    // Solution1
+    // match name {
+    //     "" => "Hello, World!".to_string(),
+    //     s => format!(
+    //         "Hello, {}!",
+    //         s.chars()
+    //             .enumerate()
+    //             .map(|(i, c)| {
+    //                 match i {
+    //                     0 => c.to_ascii_uppercase(),
+    //                     _ => c.to_ascii_lowercase(),
+    //                 }
+    //             })
+    //             .collect::<String>()
+    //     ),
+    // }
+    // Solution2
+    if name.is_empty() {
+        return String::from("Hello, World!");
+    }
+    format!(
+        "Hello, {}{}!",
+        name[..1].to_uppercase(),
+        name[1..].to_lowercase()
+    )
+}
 //*****************************************************************/
 #[cfg(test)]
 fn _testing(m: u64, n: u64, exp: Vec<(u64, u64)>) -> () {
@@ -739,10 +814,6 @@ fn test_likes() {
         likes(&["Alex", "Jacob", "Mark", "Max"]),
         "Alex, Jacob and 2 others like this"
     );
-}
-#[test]
-fn test_multiplication_table() {
-    assert_eq!(multiplication_table(3), [[1, 2, 3], [2, 4, 6], [3, 6, 9]]);
 }
 
 #[test]
@@ -961,9 +1032,6 @@ fn test_binary_slice_to_number() {
 }
 
 fn testing(s1: &str, s2: &str, exp: &str) -> () {
-    println!("s1:{:?} s2:{:?}", s1, s2);
-    println!("{:?} {:?}", longest(s1, s2), exp);
-    println!("{}", longest(s1, s2) == exp);
     assert_eq!(&longest(s1, s2), exp);
 }
 
@@ -1164,4 +1232,57 @@ fn basic_tests() {
 
     assert_eq!(find_smallest_int(&[34, 15, 88, 2]), 2);
     assert_eq!(find_smallest_int(&[34, -345, -1, 100]), -345);
+
+    assert_eq!(dna_strand("AAAA"), "TTTT");
+    assert_eq!(dna_strand("ATTGC"), "TAACG");
+    assert_eq!(dna_strand("GTAT"), "CATA");
+
+    assert_eq!(multiplication_table(3), [[1, 2, 3], [2, 4, 6], [3, 6, 9]]);
+
+    assert_eq!(
+        tribonacci(&[0., 1., 1.], 10),
+        vec![0., 1., 1., 2., 4., 7., 13., 24., 44., 81.]
+    );
+    assert_eq!(
+        tribonacci(&[1., 0., 0.], 10),
+        vec![1., 0., 0., 1., 1., 2., 4., 7., 13., 24.]
+    );
+    assert_eq!(
+        tribonacci(&[0., 0., 0.], 10),
+        vec![0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]
+    );
+    assert_eq!(
+        tribonacci(&[1., 2., 3.], 10),
+        vec![1., 2., 3., 6., 11., 20., 37., 68., 125., 230.]
+    );
+    assert_eq!(
+        tribonacci(&[3., 2., 1.], 10),
+        vec![3., 2., 1., 6., 9., 16., 31., 56., 103., 190.]
+    );
+    assert_eq!(tribonacci(&[1., 1., 1.], 1), vec![1.]);
+    assert_eq!(tribonacci(&[300., 200., 100.], 0), vec![]);
+    assert_eq!(
+        tribonacci(&[0.5, 0.5, 0.5], 30),
+        vec![
+            0.5, 0.5, 0.5, 1.5, 2.5, 4.5, 8.5, 15.5, 28.5, 52.5, 96.5, 177.5, 326.5, 600.5, 1104.5,
+            2031.5, 3736.5, 6872.5, 12640.5, 23249.5, 42762.5, 78652.5, 144664.5, 266079.5,
+            489396.5, 900140.5, 1655616.5, 3045153.5, 5600910.5, 10301680.5
+        ]
+    );
+    // assert_eq!(
+    //     &printer_error("aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz"),
+    //     "3/56"
+    // );
+    // assert_eq!(
+    //     &printer_error("kkkwwwaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyz"),
+    //     "6/60"
+    // );
+    // assert_eq!(
+    //     &printer_error("kkkwwwaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbmmmmmmmmmmmmmmmmmmmxyzuuuuu"),
+    //     "11/65"
+    // );
+
+    assert_eq!(hello("johN"), "Hello, John!");
+    assert_eq!(hello("alice"), "Hello, Alice!");
+    assert_eq!(hello(""), "Hello, World!");
 }

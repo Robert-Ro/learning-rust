@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+#![allow(unused_variables)]
 use std::collections::{HashMap, HashSet};
 
 pub fn in_array(arr_a: &[&str], arr_b: &[&str]) -> Vec<String> {
@@ -222,6 +224,15 @@ pub fn anagrams(word: &str, words: &[String]) -> Vec<String> {
         })
         .collect()
 }
+fn next_smaller_number(n: u64) -> Option<u64> {
+    n.to_string().chars();
+
+    None
+}
+
+fn dbl_linear(n: u32) -> u32 {
+    0
+}
 
 #[cfg(test)]
 #[test]
@@ -354,7 +365,6 @@ fn tests_spin_words() {
         "ylsuoireS this is the last one"
     );
 }
-#[allow(dead_code)]
 fn dotest(n: u64, exp: u64) -> () {
     // assert_eq!(perimeter(n), exp);
     assert_eq!(perimeter2(n), exp);
@@ -385,11 +395,7 @@ fn test_high() {
     assert_eq!(high("d bb"), "d");
     assert_eq!(high("aaa b"), "aaa");
 }
-#[test]
-fn example_tests() {
-    assert_eq!(find_missing_letter(&['a', 'b', 'c', 'd', 'f']), 'e');
-    assert_eq!(find_missing_letter(&['O', 'Q', 'R', 'S']), 'P');
-}
+
 #[test]
 fn tests_anagrams() {
     do_test("abba", &["aabb", "abcd", "bbaa", "dada"], &["aabb", "bbaa"]);
@@ -400,7 +406,7 @@ fn tests_anagrams() {
         &["carer", "racer"],
     );
 }
-#[allow(dead_code)]
+
 fn do_test(word: &str, words: &[&str], exp: &[&str]) {
     let words: Vec<String> = words.iter().map(|w| w.to_string()).collect();
     let expected: Vec<String> = exp.iter().map(|w| w.to_string()).collect();
@@ -410,4 +416,20 @@ fn do_test(word: &str, words: &[&str], exp: &[&str]) {
         "Failed with word: \"{}\"\nwords: {:#?}",
         word, words
     );
+}
+#[test]
+fn example_tests() {
+    assert_eq!(find_missing_letter(&['a', 'b', 'c', 'd', 'f']), 'e');
+    assert_eq!(find_missing_letter(&['O', 'Q', 'R', 'S']), 'P');
+    // assert_eq!(Some(12), next_smaller_number(21));
+    // assert_eq!(Some(790), next_smaller_number(907));
+    // assert_eq!(Some(513), next_smaller_number(531));
+    // assert_eq!(None, next_smaller_number(1027));
+    // assert_eq!(Some(414), next_smaller_number(441));
+
+    assert_eq!(dbl_linear(10), 22);
+    assert_eq!(dbl_linear(20), 57);
+    assert_eq!(dbl_linear(30), 91);
+    assert_eq!(dbl_linear(50), 175);
+    assert_eq!(dbl_linear(100), 447);
 }
